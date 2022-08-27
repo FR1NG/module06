@@ -44,7 +44,7 @@ int main()
     x = 13.37;
     y = 42;
     float z = static_cast<int>(x + y);
-    std::cout << x << std::endl;
+    std::cout << z << std::endl;
     return 0;
   }
 ```
@@ -53,6 +53,34 @@ on this example we have cated the result of addition between an integer and a fl
 
 **output :**
 
+    55
+
+# reinterpret cast
+
+this type of cast is used to cast from one pointer data type to another pointer datatype, it is a dangerous type of casting because it will type cast any pointer to another what will potentially lead to an undefined behavior if you don't know what you are doing.
+so the programmer have to take responsability for the consequences.
+
+## example
+
+```c++
+#include <iostream>
+
+int main()
+{
+    int *i = new int(42);
+    char *c = reinterpret_cast<char *>(i);
+    
+    std::cout << *i << std::endl;
+    std::cout << *c << std::endl;
+    return 0;
+}
+```
+
+
+
+
+[//]: # (note)
+[//]: # (implicit cast means that the compiler cast for you auto)
 
 
 
