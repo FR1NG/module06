@@ -37,4 +37,5 @@ int main(void)
     std::cout << "x value: " << data1->getX() << std::endl;
     std::cout << "y value: " << data1->getY() << std::endl;
 
+    delete data;
 }
