@@ -6,7 +6,7 @@
 /*   By: hchakoub <hchakoub@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 11:45:05 by hchakoub          #+#    #+#             */
-/*   Updated: 2022/08/27 11:45:08 by hchakoub         ###   ########.fr       */
+/*   Updated: 2022/08/27 12:46:17 by hchakoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int Convert::isFloat() const {
 
     if (this->_number == "nanf" || this->_number == "-inff" || this->_number == "+inff")
         return (1);
-    if (std::isdigit(this->_number[0]))
     for (unsigned  long i = 0; i < this->_number.length() - 1; i++)
     {
         if (i == 0 && (this->_number[i] == '+' || this->_number[i] == '-'))
@@ -162,8 +161,8 @@ void Convert::printFromFloat() const {
         if (std::isprint(f))
             std::cout << "char: " << static_cast<char>(f) << std::endl;
         else
-            std::cout << "char: Non displayable" << std::endl;
-        std::cout << "int: " << static_cast<int>(f) << std::endl;
+            std::cout << ((this->_number == "nanf" || this->_number == "+inff" || this->_number == "-inff") ? "char: impossible" : "char: Non displayable") << std::endl;
+        (this->_number == "nanf" || this->_number == "+inff" || this->_number == "-inff") ? std::cout << "int: impossible" << std::endl : std::cout << "int: " << static_cast<int>(f) << std::endl;
         std::cout << "float: " << std::setprecision(1) << std::fixed << f << "f" << std::endl;
         std::cout << "double: " << std::setprecision(1) << std::fixed << static_cast<double>(f) << std::endl;
     } catch (std::exception &e) {
@@ -179,8 +178,8 @@ void  Convert::printFromDouble() const {
         if (std::isprint(static_cast<int>(d)))
             std::cout << "char: " << static_cast<char>(d) << std::endl;
         else
-            std::cout << "char: Non displayable" << std::endl;
-        std::cout << "int: " << static_cast<int>(d) << std::endl;
+            std::cout << ((this->_number == "nan" || this->_number == "+inf" || this->_number == "-inf") ? "char: impossible" : "char: Non displayable") << std::endl;
+        (this->_number == "nan" || this->_number == "+inf" || this->_number == "-inf") ? std::cout << "int: impossible" << std::endl : std::cout << "int: " << static_cast<int>(d) << std::endl;
         std::cout << "float: " << std::setprecision(1) << std::fixed << static_cast<float>(d) << "f" << std::endl;
         std::cout << "double: " << std::setprecision(1) << std::fixed << d << std::endl;
     } catch (std::exception &e) {
