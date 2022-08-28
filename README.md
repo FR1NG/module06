@@ -76,6 +76,77 @@ int main()
 }
 ```
 
+# dynamic cast
+
+is a type cast that used for one reason, the reason that is used for is to cast between base class and derived class.
+let consider `BASE` a base class and `A` and `B` are two classes derived from `BASE`, we can cast `A` object pointer to `Base` pointer and we can cast it back to `A` but we can not cast it to `B` .
+
+for this reason we use `dynamic cast`.
+
+## sysntax :
+
+```c++
+dynamic_cast<new_type>(expression)
+```
+
+- to use dynamic cast , the base class must contain at least one virtual member function.
+- if new_type is a pointer, in case of success the cast returns a value of type new_type, in case of fail it returns a nullptr.
+- if new_type is a reference is case of success it returns a value of type new_type, in case of fail a std::bad_cast exception will be thrown.
+
+## example :
+
+```c++
+#include <iostream>
+
+class Base {
+public:
+    virtual ~Base(){};
+};
+
+class A: public Base {};
+
+class B: public Base{};
+
+int main(void)
+{
+    Base *base = new A();
+    A *a = dynamic_cast<A *>(base); //this will cast successfully base to A pointer, because it is holding an object of A.
+    B *b = dynamic_cast<B *>(base); //this will return a nullptr.
+
+    if (a == nullptr)
+        std::cout << "failed to cast to A pointer" << std::endl;
+    else
+        std::cout << "casting to A pointer succeed" << std::endl;
+
+    if (b == nullptr)
+        std::cout << "failed to cast to B pointer" << std::endl;
+    else
+        std::cout << "casting to B pointer succeed" << std::endl;
+
+
+    try {
+        A &a1 = dynamic_cast<A&>(*base);
+        std::cout << "casted successfully to A reference" << std::endl;
+    } catch (...) {
+        std::cout << "cast fail to A reference" << std::endl;
+    }
+
+    try {
+        B &a1 = dynamic_cast<B&>(*base);
+        std::cout << "casted successfully to A reference" << std::endl;
+    } catch (...) {
+        std::cout << "cast fail to B reference" << std::endl;
+    }
+}
+```
+
+## output :
+
+    casting to A pointer succeed
+    failed to cast to B pointer
+    casted successfully to A reference
+    cast fail to B reference
+
 
 
 
