@@ -27,6 +27,8 @@ Data& Data::operator=(const Data& data) {
     return (*this);
 }
 
+Data::~Data() {}
+
 int Data::getX() const {
     return (this->x);
 }
